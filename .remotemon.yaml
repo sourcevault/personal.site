@@ -1,0 +1,89 @@
+install.go_and_hugo:
+  pwd: ../_trash
+  local:
+    # install go
+    - git clone https://github.com/udhos/update-golang
+    - cd update-golang
+    - sudo ./update-golang.sh
+    - source /etc/profile.d/golang_path.sh
+    # install hugo
+    - mkdir $HOME/src
+    - cd $HOME/src
+    - git clone https://github.com/gohugoio/hugo.git
+    - cd hugo
+    - go install --tags extended
+
+resume.build:
+  pwd: ../intermediate
+  local:
+    - mkdir resume
+    - hugo new site resume
+    - rm ./resume/config.toml
+    - git clone https://github.com/ojroques/hugo-researcher.git resume/themes/researcher
+    - cp -rv ../edit/resume/ ./
+
+resume.clean:
+  verbose: 2
+  silent: true
+  local:
+    - rm -rf ../intermediate/resume
+
+resume.w:
+  watch: ./edit/resume
+  pwd: ../
+  local:
+    - cp -rvu ./edit/resume ./intermediate
+    - |-
+      cd intermediate/resume
+      hugo
+      cp -rvu public ../../final/resume
+
+blog.w:
+  watch: ./edit/blog
+  pwd: ../
+  local:
+    - cp -rvu ./edit/blog ./intermediate
+    - |-
+      cd intermediate/resume
+      hugo
+      cp -rvu public/* ../../final/
+
+blog.build:
+  verbose: 1
+  pwd: ../intermediate
+  local:
+    - mkdir -p blog
+    - hugo new site blog
+    - rm ./blog/config.toml
+    - git clone https://github.com/adityatelange/hugo-PaperMod blog/themes/PaperMod --depth=1
+    - cp -rv ../edit/blog/ ./
+
+# cook:
+#   pwd:
+
+#   - |-
+#     cd intermediate/blog
+#     hugo
+#     cp -rvu public/* ../../final/
+#   - |-
+#     cd intermediate/resume
+#     hugo
+#     cp -rvu public ../../final/resume
+
+getrepo:
+  pwd: ../
+  local:
+    - git clone git@github.com:sourcevault/sourcevault.github.io.git final
+
+
+
+
+
+
+
+
+
+
+
+
+
