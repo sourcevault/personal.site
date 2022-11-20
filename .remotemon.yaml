@@ -29,14 +29,16 @@ resume.clean:
     - rm -rf ../intermediate/resume
 
 resume.w:
-  watch: ./edit/resume
+  watch: ./resume
   pwd: ../
+  pre:
+    - cp -rv ./edit/resume ./intermediate
   local:
     - cp -rvu ./edit/resume ./intermediate
-    - |-
-      cd intermediate/resume
-      hugo
-      cp -rvu public ../../final/resume
+    # - |-
+    #   cd intermediate/resume
+    #   hugo
+    #   cp -rvu public ../../final/resume
 
 blog.w:
   watch: ./edit/blog
@@ -45,7 +47,7 @@ blog.w:
     - cp -rvu ./edit/blog ./intermediate
     - |-
       cd intermediate/resume
-      hugo
+      # hugo
       cp -rvu public/* ../../final/
 
 blog.build:
@@ -58,17 +60,18 @@ blog.build:
     - git clone https://github.com/adityatelange/hugo-PaperMod blog/themes/PaperMod --depth=1
     - cp -rv ../edit/blog/ ./
 
-# cook:
-#   pwd:
-
-#   - |-
-#     cd intermediate/blog
-#     hugo
-#     cp -rvu public/* ../../final/
-#   - |-
-#     cd intermediate/resume
-#     hugo
-#     cp -rvu public ../../final/resume
+cook:
+  pwd: ../
+  local:
+    - |-
+      cd ./intermediate/blog
+      hugo
+      cp -rv public/* ../../final/
+    - |-
+      mkdir -p ./final/resume
+      cd ./intermediate/resume
+      hugo
+      cp -rv public/* ../../final/resume/
 
 getrepo:
   pwd: ../
