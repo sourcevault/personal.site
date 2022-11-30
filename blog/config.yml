@@ -62,13 +62,13 @@ menu:
           url: /archives/
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
-# markup:
-#   highlight:
-#     anchorLineNos: false
-#     codeFences: true
-#     guessSyntax: false
-#     lineNos: false
-#     style: monokai
-#   goldmark:
-#     renderer:
-#       unsafe: true
+markup:
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+    lineNos: false
+    style: monokai
+  goldmark:
+    renderer:
+      unsafe: true

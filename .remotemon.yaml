@@ -35,26 +35,26 @@ resume.w:
     - cp -rv ./edit/resume ./intermediate
   local:
     - cp -rvu ./edit/resume ./intermediate
-    # - |-
-    #   cd intermediate/resume
-    #   hugo
-    #   cp -rvu public ../../final/resume
+    - |-
+      #   cd intermediate/resume
+      # hugo
+      #   cp -rvu public ../../final/resume
 
 blog.w:
-  watch: ./edit/blog
+  watch: ./blog
   pwd: ../
   local:
     - cp -rvu ./edit/blog ./intermediate
-    - |-
-      cd intermediate/resume
-      # hugo
-      cp -rvu public/* ../../final/
+    # - |-
+    #   cd intermediate/resume
+    #   # hugo
+    #   cp -rvu public/* ../../final/
 
 blog.build:
   verbose: 1
   pwd: ../intermediate
   local:
-    - mkdir -p blog
+    # - mkdir -p blog
     - hugo new site blog
     - rm ./blog/config.toml
     - git clone https://github.com/adityatelange/hugo-PaperMod blog/themes/PaperMod --depth=1

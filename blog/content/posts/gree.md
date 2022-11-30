@@ -24,7 +24,8 @@ js: https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/livescr
 
 It's not everyday you get to buy a new AC unit, I though it would be a good idea to finally take some thermal images of the coils that do all the work in a heat exchanger.
 
-<img class="imgc" src="./outdoor.jpg" />
+
+{{< figure src="./outdoor.jpg#center" width="60%">}}
 
 🔵 *condenser unit (outdoor), placed near window*
 
@@ -50,16 +51,15 @@ So it seems my AC unit was consuming **~ 460 Watts** while operating at it's low
 
 Now time to take some thermal images  ...
 
-<img class="imgc" src="./close_up_rainbow.jpg" width="150%"/>
+{{< figure src="./close_up_rainbow.jpg#center" width="60%">}}
 
 🔵 outdoor unit / thermal image ( distant )
 
-<img class="imgc" src="./close_up.jpg" width="150%"/>
+{{< figure src="./close_up.jpg#center" width="60%">}}
 
 🔵 close up of colder coil in unit, temperature difference of ~10°C between coil.
 
-
-<img class="imgc" src="./heat_far.jpg" width="150%"/>
+{{< figure src="./heat_far.jpg#center" width="60%">}}
 
 🔵 using red, outdoor temperature is 30°C, hottest coil is at 46°C. ( 16°C differential ).
 
