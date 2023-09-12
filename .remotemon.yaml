@@ -1,0 +1,172 @@
+var:
+  clean: &clean
+    local:
+      - echo $PWD
+      - ls | xargs rm -rf
+
+install.go:
+  pwd: ../_trash
+  local:
+    # install go
+    - git clone https://github.com/udhos/update-golang
+    - cd update-golang
+    - sudo ./update-golang.sh
+    - source /etc/profile.d/golang_path.sh
+
+install.hugo:
+  pwd: ../_trash
+  local:
+    # install hugo
+    - mkdir $HOME/src
+    - cd $HOME/src
+    - git clone https://github.com/gohugoio/hugo.git
+    - cd hugo
+    - go install --tags extended
+
+resume.build:
+  pwd: ../intermediate
+  local:
+    - mkdir resume
+    - hugo new site resume
+    - rm ./resume/config.toml
+    - git clone https://github.com/ojroques/hugo-researcher.git resume/themes/researcher
+    - |-
+      cd resume/themes/researcher
+      git checkout a5712a2
+    - cp -rv ../edit/resume/ ./
+
+resume.clean:
+  verbose: 2
+  silent: true
+  local:
+    - rm -rf ../intermediate/resume
+
+blog.w:
+  watch: '.'
+  var:
+    rs: &rs
+      - archive
+      - verbose
+      - human-readable
+      - delete
+      - force
+      - delete-excluded
+      # - dry-run
+      - exclude: .git
+  rsync:
+    - - *rs
+      - src: ./blog/config/
+      - des: ../intermediate/blog/config
+    - - *rs
+      - src: ./blog/static/
+      - des: ../intermediate/blog/static
+    - - *rs
+      - src: ./blog/layouts/
+      - des: ../intermediate/blog/layouts
+    - - *rs
+      - src: ./blog/content/
+      - des: ../intermediate/blog/content
+    - - *rs
+      - exclude:
+          - PaperMod/.github
+      - src: ./blog/themes/
+      - des: ../intermediate/blog/themes
+
+resume.w:
+  pwd: ../
+  watch: ./edit/resume/
+  rsync:
+    - - *rs
+      - src: ./edit/resume/
+      - des: ./intermediate/resume/
+    - - *rs
+      - src: ./edit/resume/themes/
+      - des: ./intermediate/resume/themes/
+
+resume.rebuild:
+  verbose: 1
+  pwd: ../intermediate/resume/
+  watch:
+    - ./config/
+    - ./static/
+    - ./layouts/
+    - ./content/
+    - ./themes/
+    - config.toml
+  local:
+    - rm -rf public/*
+    - hugo118.extended
+
+blog.init:
+  description:
+    - not needed to run for minor updates.
+  verbose: 1
+  pwd: ../intermediate
+
+  local:
+    - rm -rf blog
+    - hugo new site blog
+    - cp -rv ../edit/blog/ ./
+    # - git clone https://github.com/adityatelange/hugo-PaperMod blog/themes/PaperMod --depth=1
+  rsync:
+    - - *rs
+      - src: ../edit/blog/themes/
+      - des: blog/themes
+
+blog.update:
+  verbose: 1
+  pwd: ../intermediate
+  rsync:
+    - - *rs
+      - ignore-existing
+      - src: ../edit/blog/themes/
+      - des: blog/themes
+
+blog.rebuild:
+  verbose: 1
+  pwd: ../intermediate/blog
+  watch:
+    - ./config/
+    - ./static/
+    - ./layouts/
+    - ./content/
+    - ./themes/
+  local:
+    - rm -rf public/*
+    - hugo115
+    # - hugo97
+
+
+final.build:
+  pwd: ../
+  local:
+    - rm -rf final/*
+    - |-
+      cd ./intermediate/blog
+      hugo115 --baseURL https://sourcevault.github.io/
+      cp -rv public/* ../../final/
+    - |-
+      mkdir -p ./final/resume
+      cd ./intermediate/resume
+      hugo118.extended --baseURL https://sourcevault.github.io/resume
+      cp -rv public/* ../../final/resume/
+
+getrepo:
+  pwd: ../
+  local:
+    - git clone git@github.com:sourcevault/sourcevault.github.io.git final
+
+clean.final:
+  <<: *clean
+  pwd: ../final
+
+clean.blog:
+  <<: *clean
+  pwd: ../intermediate/blog
+
+clean.resume:
+  <<: *clean
+  pwd: ../intermediate/resume
+
+
+

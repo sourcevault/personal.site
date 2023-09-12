@@ -1,0 +1,29 @@
+<div class="container">
+  <div id='{{ .Get "src" }}'></div>
+</div>
+
+<script 
+  type="text/javascript" 
+  src="/js/clappr.min.js"
+>
+</script>
+
+<script>
+  var playerElement = document.getElementById('{{ .Get "src" }}');
+
+  playerElement.setAttribute("style",'margin: auto; text-align: center;height:{{ .Get "height" }}px ;width:{{ .Get "width" }}px');
+
+  var player = new Clappr.Player({
+    source: {{ .Get "src" }},
+    mute: false,
+    height: {{ .Get "height" }},
+    width: {{ .Get "width" }},
+    hlsjsConfig: {
+     liveSyncDurationCount:10,
+     autoStartLoad: true
+     },
+  });
+  
+  player.attachTo(playerElement);
+
+</script>

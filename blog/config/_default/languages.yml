@@ -1,0 +1,127 @@
+en:
+  languageName: "English"
+  # weight: 1
+  copyright: "&copy; 2023 see [COPYING.txt](https://github.com/sourcevault/personal.site/tree/main/blog/COPYING.txt)  |"
+
+  params:
+    languageAltTitle: English
+    profileMode:
+      enabled: true # needs to be explicitly set
+      title: " "
+      subtitle: "🖥️ / personal blog and notes."
+      imageUrl: logo.png
+      imageWidth: 150 # custom size
+      imageHeight: 150 # custom size
+      buttons:
+        - name: Github
+          url: "https://github.com/sourcevault"
+        - name: Resume
+          url: "https://sourcevault.github.io/resume/"
+  menu:
+    main:
+
+      - identifier: archives
+        name: posts
+        url: archive/
+        weight: 1
+
+      - identifier: search
+        name: search
+        url: search/
+        weight: 2
+
+      - identifier: tags
+        name: tags
+        url: tags/
+        weight: 3
+
+      - identifier: contact
+        name: contact
+        url: contact/
+        weight: 4
+
+
+fr:
+  languageName: "Français"
+  copyright: "&copy; 2023 voir [COPYING.txt](https://github.com/sourcevault/personal.site/tree/main/blog/COPYING.txt)  |"
+  menu:
+    main:
+
+      - identifier: archives
+        name: poste
+        url: /fr/archive/
+        weight: 1
+
+      - identifier: search
+        name: recherche
+        url: /fr/search/
+        weight: 2
+
+      - identifier: tags
+        name: étiqueter
+        url: /fr/tags/
+        weight: 3
+
+      - identifier: contact
+        name: contact
+        url: fr/contact/
+        weight: 4
+
+
+  params:
+    languageAltTitle: French
+    profileMode:
+      enabled: true # needs to be explicitly set
+      title: " "
+      subtitle: "🖥️ / blog personnel et notes."
+      imageUrl: logo.png # optional
+      imageWidth: 150 # custom size
+      imageHeight: 150 # custom size
+      buttons:
+        - name: Github
+          url: "https://github.com/sourcevault"
+        - name: Résumé
+          url: "https://sourcevault.github.io/resume/"
+
+ru:
+  languageName: "Русский"
+  copyright: "&copy; видeть [COPYING.txt](https://github.com/sourcevault/personal.site/tree/main/blog/COPYING.txt)  |"
+  # weight: 1
+  # contentDir: content
+  params:
+    profileMode:
+      enabled: true # needs to be explicitly set
+      title: " "
+      subtitle: "🖥️ / личный блог и заметки."
+      imageUrl: logo.png # optional
+      imageWidth: 150 # custom size
+      imageHeight: 150 # custom size
+      buttons:
+        - name: Гитхаб
+          url: "https://github.com/sourcevault"
+        - name: Резюме
+          url: "https://sourcevault.github.io/resume/"
+  menu:
+    main:
+      - identifier: archives
+        name: архивы
+        url: /ru/archive/
+        weight: 1
+
+      - identifier: search
+        name: поиск
+        url: /ru/search/
+        weight: 2
+
+      - identifier: tags
+        name: теги
+        url: /ru/tags/
+        weight: 3
+
+      - identifier: contact
+        name: контакт
+        url: ru/contact/
+        weight: 4
+
+
+

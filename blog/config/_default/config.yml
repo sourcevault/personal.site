@@ -1,0 +1,27 @@
+baseURL: "http://127.0.0.1:8080/"
+# baseURL: "https://sourcevault.github.io/"
+relativeURLs: true
+theme:
+  - PaperMod
+  # - hugo-theme-relearn
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+DefaultContentLanguage: "en"
+defaultContentLanguageInSubdir: false
+disqusShortname: sourcevault
+
+UseHugoToc: false
+hideFooter: true
+title: ""
+markup:
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+    lineNos: false
+    style: monokai
+  goldmark:
+    renderer:
+      unsafe: true
